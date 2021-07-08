@@ -6,10 +6,12 @@ import AddMusic from '../pages/AddMusic/AddMusic'
 import MusicList from '../pages/MusicList/MusicList'
 import ErrorPage from '../pages/ErrorPage/ErrorPage'
 import SignUp from '../pages/SignUp/SignUp'
+import Header from '../components/Header/Header'
 
 const Router = () => {
     return (
         <BrowserRouter>
+            <Header/>
             <Switch>
                 <Route exact path="/login">
                     <Login/>
