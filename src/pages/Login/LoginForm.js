@@ -3,27 +3,22 @@ import { InputsContainer, LoginFormContainer} from './styled'
 import TextField from '@material-ui/core/TextField'
 import useForm from '../../hooks/useForm'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import {BASE_URL} from '../../constants/url'
+import {login} from '../../services/user'
+import { useHistory } from 'react-router-dom'
 
-const LoginForm = () => {
+const LoginForm = ({setRightButtonText}) => {
     const [form, onChange, clear] = useForm({email: "", password: ""})
+    const history = useHistory()
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        login()
-    }
-
-    const login = () => {
-        axios.post(`${BASE_URL}/users/login`, form)
-        .then((res) => console.log(res))
-        .catch((err) =>console.log(err))
+        login(form, clear, history, setRightButtonText)
     }
 
     return (
         <LoginFormContainer>
-        <form onSubmit={onSubmitForm}>
-            <InputsContainer>
+            <form onSubmit={onSubmitForm}>
+                <InputsContainer>
                     <TextField
                         name={"email"}
                         value={form.email}
@@ -46,16 +41,16 @@ const LoginForm = () => {
                         required
                         margin={"normal"}
                     />
-            </InputsContainer>
-                    <Button 
-                        fullWidth
-                        variant={"contained"}
-                        color={"primary"}
-                        type={"submit"}
-                    >
-                        Fazer login
-                    </Button>
-        </form>
+                </InputsContainer>
+                <Button 
+                    fullWidth
+                    variant={"contained"}
+                    color={"primary"}
+                    type={"submit"}
+                >
+                    Fazer login
+                </Button>
+            </form>
         </LoginFormContainer>
     )
 }

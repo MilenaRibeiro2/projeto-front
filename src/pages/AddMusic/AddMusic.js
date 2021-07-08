@@ -1,14 +1,17 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
+import useProtectedPage from '../../hooks/useProtectedPage'
+import { ScreenContainer } from './styled'
+import AddMusicForm from './AddMusicForm'
 
 const AddMusic = () => {
+    useProtectedPage()
+
     return (
-        <div>
+        <ScreenContainer>
             <h1>Criar música</h1>
-            <Button variant="contained" color="primary">
-                ADICIONAR
-            </Button>
-        </div>
+            <AddMusicForm></AddMusicForm>
+        </ScreenContainer>
     )
 }
 

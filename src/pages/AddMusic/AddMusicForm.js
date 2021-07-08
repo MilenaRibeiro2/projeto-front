@@ -1,66 +1,64 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { InputsContainer, SignUpFormContainer } from './styled'
+import { InputsContainer, CreateMusicContainer } from './styled'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
-import {signUp} from "../../services/user"
+import {AddMusic} from "../../services/music"
 // import CircularProgress from '@material-ui/core/CircularProgress'
 
-const SignUpForm = ({setRightButtonText}) => {
+const AddMusicForm = () => {
   const history = useHistory()
-  const [form, onChange, clear] = useForm({ nickname: '', email: '', password: '', name: ''})
+  const [form, onChange, clear] = useForm({ title: '', file: '', genre: '', album: ''})
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    signUp(form, clear, history, setRightButtonText)
+    AddMusic(form, clear, history)
     // console.log(form)
   }
 
   return (
     <form onSubmit={onSubmitForm}>
-      <SignUpFormContainer>
+      <CreateMusicContainer>
         <InputsContainer>
         <TextField
-            value={form.name}
-            name={'name'}
+            value={form.title}
+            name={'title'}
             onChange={onChange}
-            label={'Nome'}
+            label={'Título'}
             variant={'outlined'}
-            fullWidth
-            required
-            autoFocus
-            margin={'normal'}
-          />
-          <TextField
-            value={form.nickname}
-            name={'nickname'}
-            onChange={onChange}
-            label={'Apelido'}
-            variant={'outlined'}
-            fullWidth
-            required
-            autoFocus
-            margin={'normal'}
-          />
-          <TextField
-            value={form.email}
-            name={'email'}
-            onChange={onChange}
-            label={'E-mail'}
-            variant={'outlined'}
-            type={'email'}
             fullWidth
             required
             margin={'normal'}
           />
           <TextField
-            value={form.password}
-            name={'password'}
+            value={form.file}
+            name={'file'}
             onChange={onChange}
-            label={'Senha'}
+            label={'Arquivo'}
             variant={'outlined'}
-            type={'password'}
+            fullWidth
+            required
+            margin={'normal'}
+          />
+          <TextField
+            value={form.genre}
+            name={'genre'}
+            onChange={onChange}
+            label={'Gênero'}
+            variant={'outlined'}
+            type={'text'}
+            fullWidth
+            required
+            margin={'normal'}
+          />
+          <TextField
+            value={form.album}
+            name={'album'}
+            onChange={onChange}
+            label={'Álbum'}
+            variant={'outlined'}
+            type={'text'}
             fullWidth
             required
             margin={'normal'}
@@ -72,12 +70,12 @@ const SignUpForm = ({setRightButtonText}) => {
           type={'submit'}
           fullWidth
         >
-            Fazer Cadastro
+            Adicionar
           {/* {isLoading ? <CircularProgress color={"inherit"} size={24}/> : <>Fazer Cadastro</>} */}
         </Button>
-      </SignUpFormContainer>
+      </CreateMusicContainer>
     </form>
   )
 }
 
-export default SignUpForm
+export default AddMusicForm
