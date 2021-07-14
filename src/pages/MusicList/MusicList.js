@@ -3,93 +3,44 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/url'
 import { useHistory } from 'react-router-dom'
-import { MusicCardContent, AddRecipeButton } from './styled'
+import { AddRecipeButton, MusicListContainer } from './styled'
 import { goToAddMusic, goToDetails } from '../../routes/coordinator'
 import { Add } from '@material-ui/icons'
-import Button from '@material-ui/core/Button'
-// import MusicListCard from '../../components/MusicListCard/MusicListCard'
-// import CardMedia from '@material-ui/core/CardMedia'
-// import { FeedContainer } from './styled'
-// import Card from '@material-ui/core/Card'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    details: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    content: {
-      flex: '1 0 auto',
-    },
-    cover: {
-      width: 151,
-    },
-    controls: {
-      display: 'flex',
-      alignItems: 'center',
-      paddingLeft: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
-    },
-    playIcon: {
-      height: 38,
-      width: 38,
-    },
-  }));
+import MusicListCard from "../../components/MusicListCard/MusicListCard"
+import { MusicCardContainer } from '../../components/MusicListCard/styled'
 
 const MusicList = () => {
-    useProtectedPage()
+  useProtectedPage()
 
-    const classes = useStyles();
-    const theme = useTheme();
+  const history = useHistory()
+  const musics = useRequestData([], `${BASE_URL}/music/all`)
+  console.log(musics)
 
-    const history = useHistory()
-    const musics = useRequestData([], `${BASE_URL}/music/all`)
-    console.log(musics)
+  const onClickDetail = (id) => {
+    goToDetails(history, id)
+  }
 
-    const onClickDetail = (id) => {
-        goToDetails(history, id)
-    }
+  return (
+    <MusicListContainer>
+      {musics?.musics?.map((item) => {
+        return (
+          <MusicListCard key={item.title}
+            key={item.id}
+            title={item.title}
+            genre={item.genre}
+            onClick={() => onClickDetail(item.id)}
+          />
+        )
+      })}
 
-    return (
-            <div className={classes.details}>
-
-                <CardContent className={classes.content}>
-
-                    <h1>Lista de músicas</h1>
-
-                    {musics?.musics?.map((item) => {
-                        return (
-                            <div key={item.title}>
-                                <Typography component="h5" variant="h5">{item.title}</Typography>
-                                <Typography variant="subtitle1" color="textSecondary">{item.genre}</Typography>
-                                {/* <button>Saber mais</button> */}
-                                <Button onClick={() => onClickDetail(item.id)} size="small" color="primary">
-                                    DETALHES
-                                </Button>
-                            </div>
-                        )
-                    })}
-
-                </CardContent>
-                <AddRecipeButton
-                    color={"primary"}
-                    onClick={() => goToAddMusic(history)}
-                >
-                    <Add/>
-                </AddRecipeButton>
-            </div>
-    )
+      <AddRecipeButton
+        color={"primary"}
+        onClick={() => goToAddMusic(history)}
+      >
+        <Add />
+      </AddRecipeButton>
+    </MusicListContainer>
+  )
 }
 
 export default MusicList
@@ -110,7 +61,7 @@ export default MusicList
 //                 {/* album={item.album} */}
 //                 onClick={() => null}
 //             </Card>
-            
+
 //         )
 //         // <p>{item.title}</p>
 //     })
@@ -121,6 +72,69 @@ export default MusicList
 //             {musicList}
 //         </PlaylistsContainer>
 //     )
+// }
+
+// export default MusicList
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: 'flex',
+//     flexDirection: 'row',
+//     // minWidth: 275,
+//   },
+//   details: {
+//     display: 'flex',
+//     flexDirection: 'row',
+//   },
+//   // bullet: {
+//   //   display: 'inline-block',
+//   //   margin: '0 2px',
+//   //   transform: 'scale(0.8)',
+//   // },
+// }));
+
+// const MusicList = () => {
+//   useProtectedPage()
+
+//   const classes = useStyles();
+//   const theme = useTheme();
+
+//   const history = useHistory()
+//   const musics = useRequestData([], `${BASE_URL}/music/all`)
+//   console.log(musics)
+
+//   const onClickDetail = (id) => {
+//     goToDetails(history, id)
+//   }
+
+//   return (
+//     <div className={classes.details}>
+
+//       <CardContent className={classes.content}>
+//         <h1>Lista de músicas</h1>
+
+//         {musics?.musics?.map((item) => {
+//           return (
+//             <CardContent key={item.title}>
+//               <Typography component="h5" variant="h5">{item.title}</Typography>
+//               <Typography variant="subtitle1" color="textSecondary">{item.genre}</Typography>
+//               <Button onClick={() => onClickDetail(item.id)} size="small" color="primary">
+//                 DETALHES
+//               </Button>
+//             </CardContent>
+//           )
+//         })}
+
+//         <AddRecipeButton
+//           color={"primary"}
+//           onClick={() => goToAddMusic(history)}
+//           >
+//           <Add />
+//         </AddRecipeButton>
+
+//       </CardContent>
+//     </div>    
+//   )
 // }
 
 // export default MusicList
