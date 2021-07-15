@@ -14,7 +14,7 @@ const Login = ({setRightButtonText}) => {
     const history = useHistory()
     return (
         <ScreenContainer>
-            <RedEarbudsImage src={redEarbuds}/>
+            {/* <RedEarbudsImage src={redEarbuds}/> */}
             {/* <RedEarbudsImage2 src={redEarbuds2}/>
             <RedEarbudsImage src={redEarbuds3}/> */}
             <LoginForm setRightButtonText={setRightButtonText}/>

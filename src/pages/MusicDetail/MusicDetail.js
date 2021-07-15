@@ -7,12 +7,12 @@ import { BASE_URL } from '../../constants/url'
 const MusicDetail = () => {
     useProtectedPage()
     const params = useParams()
-    const music = useRequestData([], `${BASE_URL}/music/${params.id}`)[0]
-    console.log(music)
+    const music = useRequestData([], `${BASE_URL}/music/${params.id}`)
+    console.log(music?.queryResult && music.queryResult[0])
     return (
         <div>
             <h1>Detalhe música</h1>
-            <h1>{music && music?.queryResult[0]?.title}</h1>
+            <h1>{music?.queryResult && music.queryResult[0].title}</h1>
         </div>
     )
 }
