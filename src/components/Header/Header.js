@@ -31,8 +31,8 @@ const Header = ({rightButtonText, setRightButtonText}) => {
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
-          <Button onClick={() => goToMusicList(history)} color="inherit">Music</Button>
-          <Button onClick={rightButtonAction} color="inherit">{rightButtonText}</Button>
+          <Button onClick={() => goToMusicList(history)} color="neutralColor">Music</Button>
+          <Button onClick={rightButtonAction} color="neutralColor">{rightButtonText}</Button>
         </StyledToolbar>
       </AppBar>
   );

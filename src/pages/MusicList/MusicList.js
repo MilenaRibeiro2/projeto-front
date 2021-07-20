@@ -76,22 +76,6 @@ export default MusicList
 
 // export default MusicList
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     // minWidth: 275,
-//   },
-//   details: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//   },
-//   // bullet: {
-//   //   display: 'inline-block',
-//   //   margin: '0 2px',
-//   //   transform: 'scale(0.8)',
-//   // },
-// }));
 
 // const MusicList = () => {
 //   useProtectedPage()

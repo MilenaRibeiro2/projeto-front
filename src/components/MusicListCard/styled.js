@@ -4,9 +4,10 @@ import CardContent from '@material-ui/core/CardContent'
 
 export const MusicCardContainer = styled(Card)`
   width: 25vw;
-  margin: 20px;
+  margin: 30px;
   margin-bottom: 10px;
-  margin-right: 20px;
+  margin-right: 50px;
+  margin-left: 50px;
 `
 export const MusicCardContent = styled(CardContent)`
   display: flex;

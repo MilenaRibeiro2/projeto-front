@@ -65,7 +65,8 @@ const AddMusicForm = () => {
           />
         </InputsContainer>
         <Button
-          color={'primary'}
+          // color={'primary'}
+          color={"primary"}
           variant={'contained'}
           type={'submit'}
           fullWidth

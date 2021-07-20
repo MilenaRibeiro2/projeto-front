@@ -48,7 +48,7 @@ const LoginForm = ({setRightButtonText}) => {
                     color={"primary"}
                     type={"submit"}
                 >
-                    Fazer login
+                    Fazer Login
                 </Button>
             </form>
         </LoginFormContainer>

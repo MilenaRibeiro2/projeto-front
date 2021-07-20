@@ -15,7 +15,7 @@ const MusicListCard = (props) => {
           genre={props.genre}
         />
         <MusicCardContent>
-          <Typography component="h5" variant="h5" align={'center'}>
+          <Typography component="h5" variant="h5" align={'center'} >
             {props.title}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary" align={'center'}>
